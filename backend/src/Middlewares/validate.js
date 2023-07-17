@@ -23,39 +23,21 @@ export function Loginschema(req, res, next) {
 
 export function SignUpschema(req, res, next) {
   var schema;
-  if (req.body.registerType === "Organization") {
-    schema = joi.object({
-      firstName: joi.string().required(),
-      lastName: joi.string().required(),
-      companyName: joi.string().required(),
-      companyOrgNo: joi.string().required(),
-      country: joi.string().required(),
-      city: joi.string().required(),
-      email: joi
-        .string()
-        .required()
-        .regex(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i),
-      password: joi
-        .string()
-        .required()
-        .min(8)
-        .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/),
-    });
-  } else {
-    schema = joi.object({
-      firstName: joi.string().required(),
-      lastName: joi.string().required(),
-      email: joi
-        .string()
-        .required()
-        .regex(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i),
-      password: joi
-        .string()
-        .required()
-        .min(8)
-        .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/),
-    });
-  }
+
+  schema = joi.object({
+    firstName: joi.string().required(),
+    lastName: joi.string().required(),
+    email: joi
+      .string()
+      .required()
+      .regex(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i),
+    password: joi
+      .string()
+      .required()
+      .min(8)
+      .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/),
+  });
+
   const { error, value } = schema.validate(req.body);
 
   if (error) {

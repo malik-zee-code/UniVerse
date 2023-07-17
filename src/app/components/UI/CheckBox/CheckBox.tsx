@@ -5,12 +5,22 @@ interface CheckboxProps {
   defaultChecked?: boolean;
   checked?: boolean;
   value: string;
-  label: string;
+  label?: any;
+  className?: string;
+  labelclassName?: string;
 }
 
-const CheckBox: React.FC<CheckboxProps> = ({ id, value, checked, defaultChecked, label }) => {
+const CheckBox: React.FC<CheckboxProps> = ({
+  className,
+  labelclassName,
+  id,
+  value,
+  checked,
+  defaultChecked,
+  label,
+}) => {
   return (
-    <div className="flex items-center mb-4">
+    <div className={`${className} flex items-center mb-4`}>
       <input
         id={id}
         type="checkbox"
@@ -19,7 +29,7 @@ const CheckBox: React.FC<CheckboxProps> = ({ id, value, checked, defaultChecked,
         defaultChecked={defaultChecked}
         className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
       />
-      <label htmlFor={id} className=" capitalize ml-2 text-sm font-medium text-[#46464A]">
+      <label htmlFor={id} className={` ${labelclassName} capitalize ml-2 text-sm font-medium text-[#46464A]`}>
         {label}
       </label>
     </div>

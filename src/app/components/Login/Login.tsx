@@ -11,20 +11,16 @@ const Login = () => {
   const dispatch: AppDispatch = useDispatch();
 
   return (
-    <div className=" w-full h-full flex items-center  ">
-      <div className="mt-auto mx-auto w-[80%] h-[80%] ">
+    <div className=" w-full h-full flex items-center justify-center ">
+      <div className="mt-auto md:mx-auto md:w-[400px] h-[80%] ">
         <Formik
           initialValues={{ email: "", password: "" }}
           validate={(values) => {
             const errors: any = {};
-            if (!values.email) {
-              errors.email = "Required";
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-              errors.email = "Invalid email address";
-            }
+
             return errors;
           }}
-          onSubmit={async (values, { setSubmitting }): Promise<void> => {
+          onSubmit={(values, { setSubmitting }) => {
             try {
               setSubmitting(true);
 
@@ -46,10 +42,10 @@ const Login = () => {
             isSubmitting,
             /* and other goodies */
           }) => (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="w-full h-full">
               <div className="mb-10">
                 <h2 className="text-3xl">Welcome Back</h2>
-                <span className="text-sm text-slate-600">Please enter your details so we can continue</span>
+                <span className="text-sm text-slate-600">Please enter your cradentials</span>
               </div>
 
               <div className="flex flex-col w-full mt-16 ">
@@ -79,19 +75,22 @@ const Login = () => {
               <div className="w-full flex justify-between">
                 <Checkbox id="remember" value="remember-me" label="Remember Me" />
 
-                <Link href={"/auth/forgot-password"} className="text-sm">
+                <Link href={"/auth/forgot-password"} className="text-sm text-[#4f3cc9]">
                   Forgot Password?
                 </Link>
               </div>
 
               <div className="block ">
-                <Button type="submit" className={`w-full py-3 ${isSubmitting ? "!cursor-wait" : ""} }`}>
+                <Button type="submit" className={`w-full md:w-[150px] py-4 ${isSubmitting ? "!cursor-wait" : ""} }`}>
                   {isSubmitting ? "Signing in..." : "Sign In"}
                 </Button>
               </div>
 
               <div className="text-center w-full justify-center text-sm mt-10">
-                Don&apos;t have an account? <Link href={"/auth/signup"}>Sign Up</Link>
+                Don&apos;t have an account?{" "}
+                <Link href={"/auth/signup"} className="text-[#4f3cc9]">
+                  Sign Up
+                </Link>
               </div>
             </form>
           )}

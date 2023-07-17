@@ -23,7 +23,7 @@ const globalMiddleware = [
     req.file_url = `${__dirname}/../../public/uploads`;
 
     switch (req.get("host")) {
-      case "localhost:3000":
+      case "localhost:4000":
         req.server_url = `${process.env.LOCAL_PROTOCOL}://${req.get("host")}`;
     }
 

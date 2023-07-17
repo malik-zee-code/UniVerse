@@ -35,3 +35,33 @@ export const Login = (email: string, password: string) => async (dispatch: AppDi
     });
   }
 };
+
+export const Signup = (body: any) => async (dispatch: AppDispatch) => {
+  try {
+    console.log("heloo");
+
+    var res = await api.post("/auth/signup", { ...body });
+
+    toast.info(res.data.msg, {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  } catch (error: any) {
+    toast.error(error.response.data.error, {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  }
+};
