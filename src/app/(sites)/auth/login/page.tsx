@@ -3,6 +3,7 @@ import { AuthBackground } from "@/app/components/UI";
 import React from "react";
 
 const Page = () => {
+  const handleLogin = () => {};
   return (
     <AuthBackground>
       <Login />

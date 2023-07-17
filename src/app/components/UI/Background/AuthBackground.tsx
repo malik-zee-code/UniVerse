@@ -7,7 +7,7 @@ const AuthBackground: React.FC<{ children: React.ReactNode }> = ({ children }) =
         <h1 className="text-2xl">Universe</h1>
         <div className="flex justify-center  items-center w-full h-[90%]">{children}</div>
       </div>
-      <div className="flex-[2] h-full bg-zinc-500 hidden md:block "></div>
+      <div className="flex-[2] h-full bg-zinc-500 hidden lg:block "></div>
     </div>
   );
 };

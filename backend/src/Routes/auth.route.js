@@ -1,5 +1,5 @@
 import express from "express";
-import { Login, SignUp, forgotPasswordReq, resetPassword } from "../Controllers/auth.js";
+import { Login, SignUp, forgotPasswordReq, resendVerificationToken, resetPassword } from "../Controllers/auth.js";
 import catchAsyncError from "../Service/catchAsyncErrors.js";
 import { Loginschema, SignUpschema } from "../Middlewares/validate.js";
 const router = express.Router();
@@ -22,7 +22,7 @@ router.post("/login", Loginschema, catchAsyncError(Login));
 router.post("/signup", SignUpschema, catchAsyncError(SignUp));
 
 /**
- * @description Forgot Password
+ * @description Forgot Password - Requests a link
  * @Route [POST]- /api/auth/forgotPasswordReq
  * @Access public
  * @returns NOTHING - Sends an link to the requested mail
@@ -31,10 +31,18 @@ router.post("/signup", SignUpschema, catchAsyncError(SignUp));
 router.post("/forgotPasswordReq", catchAsyncError(forgotPasswordReq));
 
 /**
- * @description Forgot Password
+ * @description Forgot Password - Resets passsword
  * @Route [POST]- /api/auth/forgotPassword
  * @Access public
  * @returns NOTHING - Sends an link to the requested mail
  */
 router.post("/forgotPassword", catchAsyncError(resetPassword));
+
+/**
+ * @description Resend Verification link to Mail
+ * @Route [POST]- /api/auth/resendVerification
+ * @Access public
+ * @returns NOTHING - Sends an link to the requested mail
+ */
+router.post("/resendVerification", catchAsyncError(resendVerificationToken));
 export default router;

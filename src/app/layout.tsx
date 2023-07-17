@@ -1,6 +1,12 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 import { Inter } from "next/font/google";
+import { Provider } from "react-redux";
+import { store } from "@/redux/store";
+import ReduxProvider from "@/redux/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,7 +18,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ReduxProvider>
+          {children}
+          <ToastContainer />
+        </ReduxProvider>
+      </body>
     </html>
   );
 }

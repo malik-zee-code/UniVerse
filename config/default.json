@@ -1,4 +1,6 @@
 {
     "mongoURI": "mongodb://127.0.0.1/universe-db",
-    "jwtSecret": "test667"
+    "jwtSecret": "test667",
+    "user": "noreply.uverse@gmail.com",
+    "pass": "qkrhfcogfpzqkutc"
 }

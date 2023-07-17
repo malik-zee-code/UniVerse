@@ -3,8 +3,13 @@ import React from "react";
 import { Button, Checkbox, FloatingInput } from "@/app/components/UI";
 import Link from "next/link";
 import { Formik } from "formik";
+import { AppDispatch } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import { LoginAction } from "@/redux/services";
 
 const Login = () => {
+  const dispatch: AppDispatch = useDispatch();
+
   return (
     <div className=" w-full h-full flex items-center  ">
       <div className="mt-auto mx-auto w-[80%] h-[80%] ">
@@ -19,7 +24,17 @@ const Login = () => {
             }
             return errors;
           }}
-          onSubmit={(values, { setSubmitting }) => {}}
+          onSubmit={async (values, { setSubmitting }): Promise<void> => {
+            try {
+              setSubmitting(true);
+
+              dispatch(LoginAction(values.email, values.password));
+
+              setSubmitting(false);
+            } catch (err: any) {
+              console.log(err);
+            }
+          }}
         >
           {({
             values,
@@ -70,8 +85,8 @@ const Login = () => {
               </div>
 
               <div className="block ">
-                <Button type="submit" className="w-full py-3 ">
-                  Sign In
+                <Button type="submit" className={`w-full py-3 ${isSubmitting ? "!cursor-wait" : ""} }`}>
+                  {isSubmitting ? "Signing in..." : "Sign In"}
                 </Button>
               </div>
 

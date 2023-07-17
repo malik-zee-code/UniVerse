@@ -2,17 +2,13 @@ import joi from "joi";
 import Errorhandler from "../../../config/Error.js";
 
 export function Loginschema(req, res, next) {
-  const schema = object({
-    email: string()
+  const schema = joi.object({
+    email: joi
+      .string()
       .required()
       .regex(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i)
       .message("Invalid Email"),
-    password: string()
-      .required()
-      .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)
-      .message(
-        "Password should have atleast 1 uppercase letter, 1 lowercase letter, 1 special chracter and 1 number init "
-      ),
+    password: joi.string().required(),
   });
 
   const { error, value } = schema.validate(req.body);

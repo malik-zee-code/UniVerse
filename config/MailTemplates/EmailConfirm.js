@@ -16,7 +16,7 @@ const EmailConfirm = (to, name, ButtonLink) => {
   const htmlCode = html(greeting, name, MainText, DetailText, ButtonText, ButtonLink);
   return {
     to: to,
-    from: process.env.EMAIL_FROM,
+    from: process.env.SMTP_USER,
     subject: subject,
     attachments: [
       {

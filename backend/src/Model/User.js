@@ -50,7 +50,18 @@ UserSchema.pre("save", async function (next) {
 });
 
 UserSchema.methods.getJwtToken = function () {
-  const token = jwt.sign({ _id: this._id }, config.get("jwtSecret"), { expiresIn: 3600 });
+  const token = jwt.sign(
+    {
+      id: this._id,
+      email: this.email,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      password: this.password,
+      verified: this.verified,
+    },
+    config.get("jwtSecret"),
+    { expiresIn: 7200 }
+  );
   return token;
 };
 
