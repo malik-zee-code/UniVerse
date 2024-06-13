@@ -6,9 +6,11 @@ import { Formik } from "formik";
 import { AppDispatch } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { LoginAction } from "@/redux/services";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const dispatch: AppDispatch = useDispatch();
+  const router = useRouter();
 
   return (
     <div className=" w-full h-full flex items-center justify-center ">
@@ -27,6 +29,8 @@ const Login = () => {
               dispatch(LoginAction(values.email, values.password));
 
               setSubmitting(false);
+
+              router.replace("/");
             } catch (err: any) {
               console.log(err);
             }
@@ -59,7 +63,10 @@ const Login = () => {
                   onChange={handleChange}
                 />
 
-                <p className="text-xs text-red-500"> {errors.email && touched.email && errors.email}</p>
+                <p className="text-xs text-red-500">
+                  {" "}
+                  {errors.email && touched.email && errors.email}
+                </p>
                 <FloatingInput
                   type="password"
                   name="password"
@@ -81,7 +88,10 @@ const Login = () => {
               </div>
 
               <div className="block ">
-                <Button type="submit" className={`w-full md:w-[150px] py-4 ${isSubmitting ? "!cursor-wait" : ""} }`}>
+                <Button
+                  type="submit"
+                  className={`w-full md:w-[150px] py-4 ${isSubmitting ? "!cursor-wait" : ""} }`}
+                >
                   {isSubmitting ? "Signing in..." : "Sign In"}
                 </Button>
               </div>

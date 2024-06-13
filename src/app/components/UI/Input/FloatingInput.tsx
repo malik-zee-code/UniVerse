@@ -10,7 +10,16 @@ interface ButtonProps {
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   className?: string;
 }
-const FloatingInput: React.FC<ButtonProps> = ({ className, type, label, id, name, onChange, placeholder, onBlur }) => {
+const FloatingInput: React.FC<ButtonProps> = ({
+  className,
+  type,
+  label,
+  id,
+  name,
+  onChange,
+  placeholder,
+  onBlur,
+}) => {
   return (
     <div className={`${className} relative z-0 w-full group`}>
       <input

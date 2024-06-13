@@ -6,7 +6,7 @@ const ConnectDb = async () => {
   try {
     await connect(db);
 
-    console.log("Database Connected wise-time");
+    console.log("Database Connected");
   } catch (error) {
     console.log("Error Connection to Database", error);
   }
